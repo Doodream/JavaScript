@@ -8,10 +8,12 @@ function solution(participant, completion) {
             map.set(player, 1);
         }
     }
-    for(let player of completion){
+    // 완주자들만 - 1을 해서 중복된 완주하지 못한자만 걸러낸다.
+    
         map.set(player, map.get(player) - 1);
     }
-
+    // 중복된 사람은 2 혹은 그보다 많은 value값을 가지고 있어서 - 1을 해도 걸러진다.
+    for(let player of completion){
     for(let player of map.keys()){
         if(map.get(player) > 0){
             return player;
