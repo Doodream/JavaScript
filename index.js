@@ -1,10 +1,12 @@
 function solution(number, k) {
     var pickNumberArr = [];
     number = number.split('').map(Number);
+    var maxNumber = 0;
     const dfs = (nums, num, arr = []) => {
         //3개를 선택한다는가정에 3개가 선택 됐다면 출력
         if (num === number.length - k) {
-            pickNumberArr.push(arr.join(''));
+            var comNum = String(arr.join(''));
+            if (maxNumber < comNum) maxNumber = comNum;
         }
         else {
             for (let i = 0; i < nums.length; i++) {
@@ -16,7 +18,7 @@ function solution(number, k) {
     };
 
     dfs(number, 0);
-    return String(Math.max(...pickNumberArr));
+    return maxNumber;
 }
 
 var number = "4177252841";
