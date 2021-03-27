@@ -1,28 +1,24 @@
-function solution(priorities, location) {
-    let printOrder = [];
-    let printOrderLocation = [];
-    let prioritiesLocation = [];
-    for (let i = 0; i < priorities.length; i++) {
-        prioritiesLocation[i] = i;
-    }
-
-    while (priorities.length !== 0) {
-        let J = priorities.shift();
-        let Jlocation = prioritiesLocation.shift();
-        if (J < Math.max(priorities)) {
-            priorities.push(J);
-            prioritiesLocation.push(Jlocation);
-        } else {
-            printOrder.push(J);
-            printOrderLocation.push(Jlocation);
+function solution(number, k) {
+    var pickNumberArr = [];
+    number = number.split('').map(Number);
+    const dfs = (nums, num, arr = []) => {
+        //3개를 선택한다는가정에 3개가 선택 됐다면 출력
+        if (num === number.length - k) {
+            pickNumberArr.push(arr.join(''));
         }
-    }
+        else {
+            for (let i = 0; i < nums.length; i++) {
+                arr.push(nums[i]);
+                dfs(nums.slice(i + 1), num + 1, arr);
+                arr.pop();
+            }
+        }
+    };
 
-    var answer = printOrderLocation.indexOf(location);
-    return answer;
+    dfs(number, 0);
+    return String(Math.max(...pickNumberArr));
 }
 
-priorities = [2, 1, 3, 2];
-location = 2;
-
-console.log(solution(priorities, location));
+var number = "4177252841";
+var k = 4;
+console.log(solution(number, k));
