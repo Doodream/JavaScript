@@ -5,8 +5,7 @@ const isPrime = (n) => {
     if (n === 2 || n === 3) return true;
     if (n % 2 == 0) return false;
     var divider = 3;
-    var sqrtN = Math.sqrt(n);
-    while (sqrtN > divider) {
+    while (n / 2 > divider) {
         if (n % divider === 0) return false;
         divider += 2;
     }

@@ -1,7 +1,7 @@
 var input = ["a", "b", "c", "d"];
 var answer = [];
 
-var permutation = (arr, n, k) => {
+const permutation = (arr, n, k) => {
     if (n === arr.length - 1) {
         const str = arr.slice(0, k).join("");
         if (!answer.includes(str)) answer.push(str);
